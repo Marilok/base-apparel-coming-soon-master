@@ -114,18 +114,17 @@ header img {
   .inf-wrap h1, span {
     font-size: 64px;
   }
-  .inf-wrap form{
+
+  .inf-wrap form {
     margin-top: 2rem;
   }
-  .inf-wrap form button{
 
+  .inf-wrap form button {
     padding: 12px 24px;
     position: relative;
     left: 1rem;
-
   }
 }
-
 
 /*.attribution {
   font-size: 11px;
