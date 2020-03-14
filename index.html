@@ -40,9 +40,10 @@
       Add your email below to stay up-to-date with announcements and our launch deals.</p>
 
     <form class="form">
-      <input type="email" name="email" value="" oninvalid="alert('You must fill out the form!')" placeholder="Email Address" required>
-      <button type="submit" name="submit"> <img src="images\icon-arrow.svg" alt=""> </button>
+      <input type="email" name="email" value="" oninvalid="myFunction()" placeholder="Email Address" required>
+      <button type="submit" name="submit" onclick=""> <img src="images\icon-arrow.svg" alt=""> </button>
     </form>
+    <p id="error"></p>
   </div>
 
   <!--footer>
@@ -51,6 +52,12 @@
       Coded by <a href="#">Marilokms</a>.
     </p>
   </footer-->
+<script type="text/javascript">
+const text = document.getElementById("error")
+  function myFunction(){
+    text.innerHTML = "Please provide a valid email";
+  }
+</script>
 </body>
 
 </html>

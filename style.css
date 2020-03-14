@@ -125,6 +125,11 @@ header img {
     left: 1rem;
   }
 }
+#error{
+  color: hsl(0, 93%, 68%);
+  position: absolute;
+margin-left: 2.5%;
+}
 
 /*.attribution {
   font-size: 11px;
