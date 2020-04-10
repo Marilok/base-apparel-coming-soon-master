@@ -7,19 +7,8 @@
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
-  <title>Frontend Mentor | Base Apparel coming soon page</title>
+  <!-- <title>Frontend Mentor | Base Apparel coming soon page</title> -->
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution {
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .attribution a {
-      color: hsl(228, 45%, 44%);
-    }
-  </style>
 </head>
 
 <body>
@@ -28,36 +17,56 @@
     <img src="images\logo.svg" alt="logo">
   </header>
 
-  <picture class="woman">
-    <source srcset="images\hero-desktop.jpg" media="(min-width: 500px)">
-    <img src="images\hero-mobile.jpg" alt="hero">
-  </picture>
+  <aside> </aside>
 
-  <div class="inf-wrap">
+  <main>
     <h1><span>We're</span> coming soon</h1>
 
     <p>Hello fellow shoppers! We're currently building our new fashion store.
       Add your email below to stay up-to-date with announcements and our launch deals.</p>
 
-    <form class="form">
-      <input type="email" name="email" value="" oninvalid="myFunction()" placeholder="Email Address" required>
-      <button type="submit" name="submit" onclick=""> <img src="images\icon-arrow.svg" alt=""> </button>
-    </form>
-    <p id="error"></p>
-  </div>
+    <!-- <img src="images\bg-pattern-desktop.svg" id="background" alt=""> -->
 
-  <!--footer>
+    <form method="post" novalidate>
+      <input type="email" name="email" value="" placeholder="Email Address">
+      <img src="images\icon-error.svg" alt="error icon" id="error-icon">
+      <button type="submit" name="submit"> <img src="images\icon-arrow.svg" alt=""> </button>
+  </form>
+    <p id="error-text">Please provide a valid email</p>
+  </main>
+
+
+  <!--footer></footer>
     <p class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
       Coded by <a href="#">Marilokms</a>.
     </p>
   </footer-->
-<script type="text/javascript">
-const text = document.getElementById("error")
-  function myFunction(){
-    text.innerHTML = "Please provide a valid email";
-  }
-</script>
+  <script type="text/javascript">
+    const form = document.getElementsByTagName("form")[0];
+    const input = document.getElementsByTagName("input")[0];
+    const button = document.getElementsByTagName("button")[0];
+    const errorText = document.getElementById("error-text");
+    const errorIcon = document.getElementById("error-icon");
+
+    function validateEmail() {
+      let test = /(^\w.*@\w+\.\w)/.test(input.value);
+      if (!test) {
+        form.classList.add("invalid");
+        errorText.style.opacity = "1";
+        errorIcon.style.opacity = "1";
+      } else {
+        form.classList.remove('invalid');
+        errorText.style.opacity = "0";
+        errorIcon.style.opacity = "0";
+      }
+    }
+
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      validateEmail();
+    });
+  </script>
 </body>
 
 </html>

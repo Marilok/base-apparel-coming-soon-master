@@ -3,18 +3,22 @@
 }
 
 html, body {
+  margin: 0;
+  padding: 0;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 16px;
-  margin: auto;
-  padding: 0;
-  outline: none;
-  height: 100%;
 }
 
 body {
   background-image: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  /* grid-template-areas: "header" "hero" "content"; */
+  grid-template-rows: auto 250px 1fr;
+  grid-template-columns: 1fr;
+
+
 }
 
 header {
@@ -25,13 +29,14 @@ header img {
   max-width: 30vw;
 }
 
-.inf-wrap {
+main {
   text-align: center;
   color: hsl(0, 36%, 70%);
   margin: 1.5rem;
+  /* grid-area: "content"; */
 }
 
-.inf-wrap h1, span {
+main h1, span {
   letter-spacing: 0.75rem;
   word-spacing: 9999rem;
   text-transform: uppercase;
@@ -40,95 +45,174 @@ header img {
   font-weight: 300;
 }
 
-.inf-wrap h1 {
+main h1 {
   font-weight: 600;
   color: hsl(0, 6%, 24%);
 }
 
-.inf-wrap p {
+main p {
   color: hsl(0, 36%, 70%);
   font-weight: 400;
   font-size: 15px;
   line-height: 1.5rem;
 }
 
-.form {
+form {
+  position: relative;
+  height: 60px;
   display: flex;
   flex-direction: row;
   border: 1px solid hsl(0, 36%, 70%);
   border-radius: 1000px;
-  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+  inline-size: 100%;
 }
 
-.form input, button {
+.invalid {
+  border-color: #f96262;
+}
+
+form input, button {
   padding: 12px;
   border: none;
 }
 
-.form input {
+form input {
   background-color: transparent;
   padding-left: 1.5rem;
   border-radius: 24px;
+  color: hsl(0, 6%, 24%);
+  font-weight: 600;
+  inline-size: calc(100% - 100px);
+  display: inline-block;
+  -webkit-appearance: textfield;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+}
+
+form input::placeholder {
   color: hsl(0, 36%, 70%);
 }
 
-.form input::placeholder {
-  color: hsl(0, 36%, 70%);
-}
-
-.form button {
+form button {
+  top: -2px;
+  right: -2px;
+  display: inline-block;
+  inline-size: 100px;
   background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
   color: white;
-  border-radius: 24px;
+  border-radius: 30px;
   box-shadow: 0 0 0.25rem hsl(0, 36%, 70%);
+  cursor: pointer;
+  block-size: calc(100% + 4px);
+  box-shadow: 0px 10px 15px 1px #f8bfbf;
+  transition: box-shadow 0.3s;
 }
 
-.form button img {
-  padding: 0 1rem;
+
+form button:hover {
+  background: linear-gradient(135deg, #f8bfbf, #f8bfbf);
+  box-shadow: 0px 10px 20px 5px #f4a4a4;
 }
+form button img {
+  margin: auto;
+}
+
+
+#error-text {
+  opacity: 0;
+  color: hsl(0, 93%, 68%);
+  position: absolute;
+  margin-left: 2.5%;
+  transition: all 0.3s;
+}
+
+#error-icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s;
+margin-right: 1.5rem;
+opacity: 0;
+}
+
+/* #hero {
+  background-image: url(./images/hero-mobile.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  /* grid-area: "hero"; */ */
+}
+
+#background {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+aside{
+  /* width: 100%;
+  max-height: 100%; */
+  background-image: url("./images/hero-mobile.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
 
 @media screen and (min-width: 1440px) {
   body {
-    display: inline;
+    /* grid-template-areas:"header hero" "content hero"; */
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows:auto 1fr;
   }
 
-  .woman {
-    position: absolute;
-    right: 0;
-    top: 0;
+  aside {
     height: 100%;
     width: auto;
+    justify-self: end;
+    max-width: 50vw;
+    background-size: cover;
+    content: url("./images/hero-desktop.jpg");
+    grid-area: 1 / 2 / last-line / last-line;
   }
 
-  .inf-wrap {
+  /* #hero {
+    content: url("./images/hero-desktop.jpg");
+    background-size: cover;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    grid-area: 1 / 2 / last-line / last-line;
+  } */
+
+  main {
     text-align: left;
     padding: 0vw 7vw;
     margin: 0;
-    max-width: 25rem;
   }
 
-  .inf-wrap h1 {
+  main h1 {
     margin-top: 0;
   }
 
-  .inf-wrap h1, span {
+  main h1, span {
     font-size: 64px;
   }
 
-  .inf-wrap form {
-    margin-top: 2rem;
+  main form {
+      margin-top: 2rem;
   }
 
-  .inf-wrap form button {
-    padding: 12px 24px;
-    position: relative;
-    left: 1rem;
+  main form button {
+    padding: 12px 32px;
+
   }
-}
-#error{
-  color: hsl(0, 93%, 68%);
-  position: absolute;
-margin-left: 2.5%;
+form button img {
+
 }
 
 /*.attribution {
